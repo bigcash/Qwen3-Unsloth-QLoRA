@@ -9,6 +9,10 @@ Use unsloth to finetune Qwen3 on your own dataset. **仅支持单GPU**
 训练环境构建步骤：
 
 ```shell
+apt update
+apt upgrade
+apt install tmux
+
 conda create -n py310 python=3.10
 conda init bash && source /root/.bashrc
 conda activate py310
