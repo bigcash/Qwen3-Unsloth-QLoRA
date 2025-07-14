@@ -13,7 +13,9 @@ from unsloth import FastLanguageModel
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_id_or_path", type=str, default="")
 parser.add_argument("--output", type=str, default="output")
-parser.add_argument('--data_files', nargs='+', type=str, default=[], help='qwen3 data files')
+parser.add_argument('--data_files', nargs='+', type=str, default=[], help='qwen3 data files, e.g., --data_files demo1.jsonl demo2.jsonl')
+parser.add_argument('--target_modules', nargs='+', type=str, default=["q_proj", "k_proj", "v_proj", "o_proj",
+                    "gate_proj", "up_proj", "down_proj"], help='lora target modules')
 parser.add_argument("--max_seq_length", type=int, default=16384)
 parser.add_argument("--batch_size", type=int, default=1)
 parser.add_argument("--gradient_accumulation_steps", type=int, default=16)
@@ -60,8 +62,7 @@ def main():
     model = FastLanguageModel.get_peft_model(
         model,
         r=args.rank,  # Choose any number > 0! Suggested 8, 16, 32, 64, 128
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
-                        "gate_proj", "up_proj", "down_proj", ],
+        target_modules=args.target_modules,
         lora_alpha=args.lora_alpha,  # Best to choose alpha = rank or rank*2
         lora_dropout=0,  # Supports any, but = 0 is optimized
         bias="none",  # Supports any, but = "none" is optimized

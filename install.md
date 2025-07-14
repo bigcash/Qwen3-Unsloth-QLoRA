@@ -1,3 +1,35 @@
+## Build log
+
+训练环境构建步骤：
+
+```shell
+apt update
+apt upgrade
+apt install tmux
+
+conda create -n py310 python=3.10
+conda init bash && source /root/.bashrc
+conda activate py310
+
+pip install unsloth
+pip install flash_attn-2.8.0.post2+cu12torch2.7cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
+pip install swanlab
+pip install ipykernel
+python -m ipykernel install --name=py310
+
+#sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
+#. /root/.nix-profile/etc/profile.d/nix.sh
+#nix-channel --add https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixpkgs-unstable nixpkgs
+#nix-channel --update
+#nix-env --file '<nixpkgs>' --install --attr llama-cpp
+#
+##pip install llama-cpp-python
+#pip install llama_cpp_python-0.3.2-cp310-cp310-linux_x86_64.whl
+```
+
+pip list:
+
+```text
 Package                  Version
 ------------------------ -----------
 accelerate               1.8.1
@@ -130,3 +162,4 @@ xformers                 0.0.30
 xxhash                   3.5.0
 yarl                     1.20.1
 zipp                     3.23.0
+```
