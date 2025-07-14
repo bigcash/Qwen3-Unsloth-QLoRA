@@ -10,7 +10,7 @@ Use unsloth to finetune Qwen3 on your own dataset. **仅支持单GPU**
 
 **Think Data**
 
-assistant = '<think>\n' + Reasoning + '\n</think>\n\n' + assistant
+assistant = '\<think\>\n' + Reasoning + '\n\</think\>\n\n' + assistant
 
 ```json lines
 {"messages": [{"role": "user", "content": "Where is the capital of Zhejiang?"}, {"role": "assistant", "content": "<think>\nxxx\n</think>\n\nThe capital of Zhejiang is Hangzhou."}]}
