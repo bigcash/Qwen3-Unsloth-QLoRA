@@ -32,7 +32,7 @@ conda activate py310
 
 python train.py --model_id_or_path Qwen/Qwen3-0.6B \
 --data_files demo_dataset.jsonl \
---output_dir /root/autodl-tmp/output \
+--output /root/autodl-tmp/output \
 --max_seq_length 512 \
 --batch_size 1 \
 --gradient_accumulation_steps 2 \
